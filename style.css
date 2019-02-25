@@ -1,0 +1,11 @@
+html{
+
+background-image: 
+url('https://thewire.in/wp-content/uploads/2017/11/space-1728314_1920.jpg');
+
+}
+body {
+    color: rgba(241, 238, 3, 0.952);
+    border: 10px solid white;
+    padding: 35px;
+}
