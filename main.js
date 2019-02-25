@@ -1,10 +1,12 @@
 
 //Created by Travis Ripley Februrary 23rd, 2019.
+//Astroweight-Calculator
+//main.js
+//Client - NASA/JPL/CHOAM - Dr. Neil Degrasse Tyson
 
-// Write your JavaScript code here!
+//Dropdown list - Planets 
 
-//Dropdown list - Contents
-var planets = [
+  var planets = [
     ['Pluto', 0.06],
     ['Neptune', 1.148],
     ['Uranus', 0.917],
@@ -18,56 +20,35 @@ var planets = [
     ['Sun', 27.9]
   ];
 
-  // We're going to solve this by breaking the problem into three parts.
-  // Programmers like automating things, we'll populate the HTML drop down options using code,
-  // instead of having to type out all the values.
-  // Create a function that does the some math and gives us the new weight.
-  // Then create a function that responds when the user clicks on the button.
+ //reverses the dropdown 
+  var planetsReverse = planets.reverse();
+        planetsReverse.forEach(popList);
 
-  // 1. Populate the dropdown element with the data found in the planets array.
-  // The value of each option should be the planet's name.
-  // Use the following built-in methods:
-  // `.forEach` `document.createElement` `document.getElementById` `.appendChild`
-
-  //reverses the dropdown list of planets
-  var planetsR = planets.reverse();
-
-  //Populate dropdown list
-
-  planetsR.forEach(popList);
-
+//Populate dropdown list
   function popList(item) {
     var p = document.createElement("option");
     p.value = item[0];
     document.getElementById("planets").appendChild(p).textContent = item[0];
   }
-
-  //returns the weight
-
+//calculates and returns the result of how your weight is affected by named planets gravity.
   function calculateWeight(weight, planetName) {
-    console.log(planetName);
-  // 2. Write the code to return the correct weight
-    // var notwhatyouthink = document.getElementById("planets").selectedIndex;
-    // console.log(notwhatyouthink);
-
-    // give the name look up the position in the array of plannets
-    // after sorting sun should = 0;
-    var position = // given planet name find the position
-    var newGravity = planets[position][1];
-
-    return weight * newGravity;
+    for(var i=0; i < planets.length; i++){   
+      if(planetName == planets[i][0]){
+        var newGravity = planets[i][1];
+  }
+}
+  return weight * newGravity;
   }
 
-  //onclick function for #calculate-button
+// 2. Write the code to return the correct weight
+//onclick function for #calculate-button
   function handleClickEvent(e) {
 
-   // 3. Create a variable called userWeight and assign the value of the user's weight.
+// 3. Create a variable called userWeight and assign the value of the user's weight.
   var weight = document.getElementById("user-weight").value;
 
-  // 4. Create a variable called planetName and assign the name of the selected planet from the drop down.
+// 4. Create a variable called planetName and assign the name of the selected planet from the drop down.
   var planetName = document.getElementById("planets").value;
-
-  console.log(planetName);
 
   // 5. Create a variable called result and assign the value of the new calculated weight.
   var result = calculateWeight(weight, planetName);
