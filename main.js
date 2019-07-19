@@ -1,67 +1,76 @@
 
-//Created by Travis Ripley Februrary 23rd, 2019.
-//Astroweight-Calculator
-//main.js
-//Client - NASA/JPL/CHOAM - Dr. Neil Degrasse Tyson
+let planets = [
+	['Pluto', 0.06],
+	['Neptune', 1.148],
+	['Uranus', 0.917],
+	['Saturn', 1.139],
+	['Jupiter', 2.640],
+	['Mars', 0.3895],
+	['Moon', 0.1655],
+	['Earth', 1],
+	['Venus', 0.9032],
+	['Mercury', 0.377],
+	['Sun', 27.9]
+];
 
-//Dropdown list - Planets 
+const planetsWithPluto = [
+	['Pluto', 0.06],
+	['Neptune', 1.148],
+	['Uranus', 0.917],
+	['Saturn', 1.139],
+	['Jupiter', 2.640],
+	['Mars', 0.3895],
+	['Moon', 0.1655],
+	['Earth', 1],
+	['Venus', 0.9032],
+	['Mercury', 0.377],
+	['Sun', 27.9]
+];
 
-  var planets = [
-    ['Pluto', 0.06],
-    ['Neptune', 1.148],
-    ['Uranus', 0.917],
-    ['Saturn', 1.139],
-    ['Jupiter', 2.640],
-    ['Mars', 0.3895],
-    ['Moon', 0.1655],
-    ['Earth', 1],
-    ['Venus', 0.9032],
-    ['Mercury', 0.377],
-    ['Sun', 27.9]
-  ];
+const planetsWithoutPluto = [
+	['Neptune', 1.148],
+	['Uranus', 0.917],
+	['Saturn', 1.139],
+	['Jupiter', 2.640],
+	['Mars', 0.3895],
+	['Moon', 0.1655],
+	['Earth', 1],
+	['Venus', 0.9032],
+	['Mercury', 0.377],
+	['Sun', 27.9]
+];
 
- //reverses the dropdown 
-  var planetsReverse = planets.reverse();
-        planetsReverse.forEach(popList);
+	loadPlanets = () => {
+		reversed = planets.reverse();
+		var myNode = document.getElementById("planets");
+		while (myNode.firstChild) {
+				myNode.removeChild(myNode.firstChild);
+		}
+		reversed.forEach(currPlanet => { 
+				const newPlanet = document.createElement("option");
+				newPlanet.innerHTML = currPlanet[0];
+				newPlanet.setAttribute("value",currPlanet[0]);
+				document.getElementById("planets").appendChild(newPlanet);
+		});
+	}
+	loadPlanets();
 
-//Populate dropdown list
-  function popList(item) {
-    var p = document.createElement("option");
-    p.value = item[0];
-    document.getElementById("planets").appendChild(p).textContent = item[0];
-  }
-//calculates and returns the result of how your weight is affected by named planets gravity.
-  function calculateWeight(weight, planetName) {
-    for(var i=0; i < planets.length; i++){   
-      if(planetName == planets[i][0]){
-        var newGravity = planets[i][1];
-  }
+
+	calculateWeight = (weight, planetName) => {
+		let conversion = planets.reduce((prev, curr) => (prev + (curr[0]==planetName ? curr[1] : 0)),0);
+		return weight * conversion;
+	}
+
+ handleClickEvent = (e) => {
+	const weight = document.getElementById("user-weight").value;
+	const planet = document.getElementById("planets").value;
+	document.getElementById("output").innerHTML = `If you were on ${planet}, you would weigh ${calculateWeight(weight, planet)}lbs!`;
 }
-  return weight * newGravity;
-  }
 
-// 2. Write the code to return the correct weight
-//onclick function for #calculate-button
-  function handleClickEvent(e) {
+	handlePluto = (e) => {
+	planets = (document.getElementById("pluto").checked) ? planetsWithoutPluto : planetsWithPluto;
+	loadPlanets();
+}
 
-// 3. Create a variable called userWeight and assign the value of the user's weight.
-  var weight = document.getElementById("user-weight").value;
-
-// 4. Create a variable called planetName and assign the name of the selected planet from the drop down.
-  var planetName = document.getElementById("planets").value;
-
-  // 5. Create a variable called result and assign the value of the new calculated weight.
-  var result = calculateWeight(weight, planetName);
-
-  // 6. Write code to display the message shown in the screenshot.
-  document.getElementById("output").innerHTML = "If you were on " + planetName +  "," + " you would weigh " + result + "lbs!";
-
-  }
-
-  // 7. Set the #calculate-button element's onclick method to use the handleClickEvent function.
-  //this is located in the (index.html file)
-
-
-  // Bonus Challenges
-  // 8. Reverse the drop down order so that the sun is first.
-  // 9. Make it look nice using bootstrap (http://getbootstrap.com/getting-started/)
+document.getElementById("calculate-button").onclick=handleClickEvent;
+document.getElementById("pluto").onclick=handlePluto;

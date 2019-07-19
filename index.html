@@ -1,20 +1,52 @@
-<!-- web102-astroweight-calculator - T.Ripley 2/22/2019 -->
 <!DOCTYPE html>
 <html>
-  <head>
-  <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAACoVwAAAAAAAPLJnQD///8ARQ4IAIAXCwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAERREAFMEQREUVQAiAAREQRVQAjAABEQxVQAiAEQ0RERQAjIEQzNERFADIgBENEREUCMiAERERERQIzIANEREREAgMiBERERERQIzIARUQ0RDAiIiAFQzNERQIjICBENEQ1ACMiIkREQTNQAiIiBEQRNEUAAyIERBERRVAAMlQRHgBwAAgAEAAIABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAEAAIABAADgBwAA" rel="icon" type="image/x-icon" />
-    <meta charset="utf-8">
-    <title>Astro Weight Calculator</title>
-    <link rel="stylesheet" href="style.css">
-  </head>
-  
-    <body>
-     <!-- Write your markup here  -->
-     <input id="user-weight" type="text" placeholder=" Your Weight ? (lbs)"  />
-     <select id="planets" placeholder = "Planets">
-    </select>
-    <button id="calculate-button" onclick="handleClickEvent()">Calculate</button>
-     <p id="output"></p>
-    <script src="main.js" charset="utf-8"></script>
-  </body>
+    <head>
+        <meta charset="utf-8" />
+        <title>Astro Weight Calculator</title>
+        <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+            crossorigin="anonymous"
+        />
+    </head>
+
+    <body class="bg-light">
+        <h1 class="m-3">Calculate Your Weight on Other Planets</h1>
+        <div class="container-fluid">
+            <div class="row m-3">
+                <label for="user-weight" class="mt-1">Your Weight: </label>
+                <input
+                    class="ml-3"
+                    id="user-weight"
+                    type="text"
+                    placeholder="Weight (lbs)"
+                />
+            </div>
+
+            <div class="row m-3">
+                <label for="planets" class="mt-2">Select a Planet: </label>
+                <select class="ml-3" id="planets"></select>
+                <button id="calculate-button" class="btn btn-warning   ml-5">
+                    Calculate
+                </button>
+            </div>
+
+            <div class="row m-3">
+                <input type="checkbox" class="mr-3 mt-1" id="pluto" />
+                <label for="pluto">Pluto is not a planet</label>
+            </div>
+        </div>
+
+        <div class="clearfix">
+            <p
+                class="bg-success m-5 text-justify p-3 border-dark rounded"
+                id="output"
+                style="width:300px;"
+            >
+                Fun with weights!
+            </p>
+        </div>
+        <script src="main.js" charset="utf-8"></script>
+    </body>
 </html>
